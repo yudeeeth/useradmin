@@ -81,3 +81,21 @@ alias permit="bash $HOME/delta2.sh"
 alias autoSchedule="bash $HOME/delta3.sh"
 alias attendance="bash $HOME/delta4.sh"
 alias record="bash $HOME/delta"
+
+#set crontab for nearest10
+
+touch something123
+crontab -l > something123
+echo "0 0 0 * * bash /home/yudeeeth/delta/delta6.sh" >> something123
+crontab something123
+rm something123
+
+#crontab for final attendance at 6:01 everyday
+touch something123
+crontab -l > something123
+echo "0 0 0 * * bash /home/yudeeeth/delta/delta6.sh" >> something123
+crontab something123
+rm something123
+
+
+#create attendance report
