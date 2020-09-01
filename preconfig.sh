@@ -1,15 +1,12 @@
 #!/bin/bash
 
-#set permissions for scripts to be only run by root/Chief
 
-chmod 000  $HOME/delta1.sh
-chmod 000  $HOME/delta2.sh
-chmod 000  $HOME/delta3.sh
-chmod 000  $HOME/delta4.sh
+# put all files in /root/userad
 
+#setfacl -Rm u:ChiefCommander:rmx /root/userad/
 #put delta 5(alias script) in #!/usr/bin/env bash
 
-echo "source $HOME/delta5.sh" >> /bin/.bashrc
+echo "source /root/userad/aliases.sh" >> /bin/.bashrc
 
 #set permissions for position and attendance.log should be accessible to chief
 
@@ -34,27 +31,21 @@ done
 
 
 #install commands in crontab
-touch $HOME/something123
-crontab -l > $HOME/something123
-echo "0 0 * * * bash /home/yudeeeth/delta/delta3.sh" >> $HOME/something123
-crontab $HOME/something123
-rm $HOME/something123
+touch /root/userad/something123
+crontab -l > /root/userad/something123
+echo "0 0 * * * bash /root/userad/assignpos.sh" >> /root/userad/something123
+echo "0 6 * * * bash /root/userad/setattendance.sh" >> /root/userad/something123 # update at 6
+echo "0 0 0 * * bash /root/userad/updateweek.sh" >> /root/userad/something123 #update every weeek
+echo "1 6 * * * bash /root/userad/dailyattendance.sh" >> /root/userad/something123 
+echo "1 6 * * * bash /root/userad/nearest.sh" >> /root/userad/something123 
+crontab /root/userad/something123
+rm /root/userad/something123
 
 
 #create text files, no need to set permissions
 touch /home/army/ArmyGeneral/attendance_record.txt
 touch /home/airforce/AirForceChief/attendance_record.txt
 touch /home/navy/NavyMarsall/attendance_record.txt
-
-
-#set crontab
-touch $HOME/something123
-crontab -l > $HOME/something123
-echo "0 6 * * * bash /home/yudeeeth/delta/delta4.sh" >> $HOME/something123
-crontab $HOME/something123
-rm $HOME/something123
-
-
 
 #create text files, no need to set permissions
 touch /home/army/ArmyGeneral/lastweek.txt
@@ -66,36 +57,7 @@ touch /home/airforce/AirForceChief/currweek.txt
 touch /home/navy/NavyMarsall/currweek.txt
 
 
-#set crontab for the thing that updates stuff everyweek
-touch something123
-crontab -l > something123
-echo "0 0 0 * * bash /home/yudeeeth/delta/delta6.sh" >> something123
-crontab something123
-rm something123
-
 #fetch.sh only accesssible to troop leaders
-
-#sets alias
-alias userGenerate="bash $HOME/delta1.sh"
-alias permit="bash $HOME/delta2.sh"
-alias autoSchedule="bash $HOME/delta3.sh"
-alias attendance="bash $HOME/delta4.sh"
-alias record="bash $HOME/delta"
-
-#set crontab for nearest10
-
-touch something123
-crontab -l > something123
-echo "0 0 0 * * bash /home/yudeeeth/delta/delta6.sh" >> something123
-crontab something123
-rm something123
-
-#crontab for final attendance at 6:01 everyday
-touch something123
-crontab -l > something123
-echo "0 0 0 * * bash /home/yudeeeth/delta/delta6.sh" >> something123
-crontab something123
-rm something123
 
 
 #create attendance report
