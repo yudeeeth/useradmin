@@ -1,23 +1,18 @@
 #!/bin/bash
 
 D=`date +"+%F"`
-touch $HOME/temp
-grep ^$D $HOME/position.log > $HOME/temp
-
+D="+2020-04-17"
+buff=(`grep ^$D /root/userad/position.log`)
 i=1
-while [ $i le 50 ]
+var=12
+while [ $i -le 50 ]
 do
   a="Army$i"
   af="AirForce$i"
   n="Navy$i"
-  #read from log file
-  buff=(`head -3 $HOME/temp`)
-  # redirect output(only date and position) to respective file.
-  echo "${buff[0]}----------${buff[2]}  ${buff[3]}" >> /home/airforce/$af/post_allotted.txt
-  echo "${buff[4]}----------${buff[6]}  ${buff[7]}" >> /home/army/$a/post_allotted.txt
-  echo "${buff[8]}----------${buff[10]}  ${buff[11]}" >> /home/navy/$n/post_allotted.txt
-  sed -i '1,3d' $HOME/temp
-   $i=` expr $i + 1 `
+  echo "${buff[$(($(( $(($i - 1)) * $var)) + 0))]}----------${buff[$(($(( $(($i - 1)) * $var)) + 2))]}  ${buff[$(($(( $(($i - 1)) * $var)) + 3))]}" >> /home/airforce/$af/post_allotted.txt
+  echo "${buff[$(($(( $(($i - 1)) * $var)) + 4))]}----------${buff[$(($(( $(($i - 1)) * $var)) + 6))]}  ${buff[$(($(( $(($i - 1)) * $var)) + 7))]}" >> /home/army/$a/post_allotted.txt
+  echo "${buff[$(($(( $(($i - 1)) * $var)) + 8))]}----------${buff[$(($(( $(($i - 1)) * $var)) + 10))]}  ${buff[$(($(( $(($i - 1)) * $var)) + 11))]}" >> /home/navy/$n/post_allotted.txt
+  i=$(( $i + 1 ))
 done
 
-rm $HOME/temp
