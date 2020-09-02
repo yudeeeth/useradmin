@@ -1,16 +1,7 @@
 #!/bin/bash
 
-
-# put all files in /root/userad
-
-#setfacl -Rm u:ChiefCommander:rmx /root/userad/
-#put delta 5(alias script) in #!/usr/bin/env bash
-
 echo "source /root/userad/aliases.sh" >> /bin/.bashrc
 
-#set permissions for position and attendance.log should be accessible to chief
-
-#making files and setting permissions so one can only view and not delete
 i=1
 while [ $i -le 50 ]
 do
@@ -29,7 +20,6 @@ do
   i=$(( $i + 1 ))
 done
 
-
 #install commands in crontab
 touch /root/userad/something123
 crontab -l > /root/userad/something123
@@ -40,7 +30,6 @@ echo "1 6 * * * bash /root/userad/dailyattendance.sh" >> /root/userad/something1
 echo "1 6 * * * bash /root/userad/nearest.sh" >> /root/userad/something123 
 crontab /root/userad/something123
 rm /root/userad/something123
-
 
 #create text files, no need to set permissions
 touch /home/army/ArmyGeneral/attendance_record.txt
