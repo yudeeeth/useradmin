@@ -5,8 +5,8 @@ right=771025
 D=`date +"+%F"`
 D="+2020-04-17"
 #touch $HOME/Code/Usermake/attendance.log
-a=(`grep ^$D $HOME/Code/useradmin/position.log | sed -e 's/'"$D"'-00.00.00//' -e 's/N°//' -e 's/E°//' -e 's/\.//g' -e 's/ //'`)
-b=(`grep ^$D $HOME/Code/useradmin/attendance.log | sed 's/'"$D"'-06.00.00 //'`)
+a=(`grep ^$D /root/userad/position.log | sed -e 's/'"$D"'-00.00.00//' -e 's/N°//' -e 's/E°//' -e 's/\.//g' -e 's/ //'`)
+b=(`grep ^$D /root/userad/attendance.log | sed 's/'"$D"'-06.00.00 //'`)
 
 #list to get top 10
 list=(162000000000000 162000000000000 162000000000000 162000000000000 162000000000000 162000000000000 162000000000000 162000000000000 162000000000000 162000000000000)
@@ -16,8 +16,6 @@ aclist=(0 0 0 0 0 0 0 0 0 0)
 function dostuff {
 a[$2]=$(($2 - $left))
 a[$3]=$(($3 - $right))
-#first=$((${a[$2]} * ${a[$2]}))
-#second=$((${a[$3]} * ${a[$3]}))
 val=$(($((${a[$2]} * ${a[$2]})) + $((${a[$3]} * ${a[$3]}))))
 
 j=9
@@ -30,8 +28,10 @@ done
 list[$j]=$val
 aclist[$j]=${a[$1]}
 }
+
+
 i=0
-while [ $i -lt 130 ]
+while [ $i -lt 150 ]
 do
 two=$(($i * 2))
 three=$(($i * 3))
@@ -39,12 +39,12 @@ three=$(($i * 3))
 i=$(($i + 1))
 done
 
-touch /home/yudeeeth/Code/useradmin/nearest.txt
-echo ------------------------------------------------------- >> /home/yudeeeth/Code/useradmin/nearest.txt
+touch /home/ChiefCommander/nearest.txt
+echo ------------------------------------------------------- >> /home/ChiefCommander/nearest.txt
 i=0
 while [ $i -lt 10 ]
 do
-echo "$D ${aclist[$i]}" >> /home/yudeeeth/Code/useradmin/nearest.txt
+echo "$D ${aclist[$i]}" >> /home/ChiefCommander/nearest.txt
 i=$(($i + 1))
 done
-echo ------------------------------------------------------- >> /home/yudeeeth/Code/useradmin/nearest.txt
+echo ------------------------------------------------------- >> /home/ChiefCommander/nearest.txt

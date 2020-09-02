@@ -9,7 +9,7 @@ sed -i '/^DIR_MODE/d' /etc/adduser.conf
 echo "DIR_MODE=700" >> /etc/adduser.conf
 
 i=1
-while [ $i le 50 ]
+while [ $i -le 50 ]
 do
   a="Army$i"
   af="AirForce$i"
@@ -45,7 +45,7 @@ $af
 y
 EOF
 
-  $i=` expr $i + 1 `
+i=$(($i + 1))
 done
 
 adduser --ingroup army ArmyGeneral <<EOF
