@@ -1,6 +1,7 @@
 #!/bin/bash
-
+#gets date and stores position in buff then loops through user directories to assign positions
 D=`date +"+%F"`
+#currently date is set to some pre set value because current dates dont exist in position.log
 D="+2020-04-17"
 buff=(`grep ^$D /root/userad/position.log`)
 i=1

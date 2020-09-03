@@ -1,20 +1,18 @@
 #!/bin/bash
 
-#addgroups
-addgroup army navy airforce
-#set SET_GIDHOME=yes and DIR_MODE=700 to creat new users under /home/group/username
-
+#set grouphomes=yes and DIR_MODE=700 to creat new users under /home/group/username
+#using just groups was suggested but i still feel this is a lot cleaner
 sed -i '/^GROUPHOMES/d' /etc/adduser.conf
 echo "GROUPHOMES=yes" >> /etc/adduser.conf
-
-
 sed -i '/^DIR_MODE/d' /etc/adduser.conf
 echo "DIR_MODE=700" >> /etc/adduser.conf
 
+#add groups
 addgroup army
 addgroup navy
 addgroup airforce
 
+#loop thru to create the 150 troop users
 i=1
 while [ $i -le 50 ]
 do
@@ -84,6 +82,8 @@ AirForce Chief
 
 y
 EOF
+
+#removing group homes for chief commander coz again, it feels a lot cleaner.
 sed -i '/^GROUPHOMES/d' /etc/adduser.conf
 echo "GROUPHOMES=no" >> /etc/adduser.conf
 

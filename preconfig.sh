@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#makes files executable
 chmod +x aliases.sh
 chmod +x assignpos.sh
 chmod +x createuser.sh
@@ -10,9 +11,7 @@ chmod +x setattendance.sh
 chmod +x setpermisssions.sh
 chmod +x updateweek.sh
 
-
-
-
+#creates post_alloted.txt in every soldier's home directory
 i=1
 while [ $i -le 50 ]
 do
@@ -38,7 +37,7 @@ echo "0 0 0 * * root bash /root/userad/updateweek.sh" >> /etc/crontab
 echo "1 6 * * * root bash /root/userad/dailyattendance.sh" >> /etc/crontab
 echo "1 6 * * * root bash /root/userad/nearest.sh" >> /etc/crontab
 
-#create text files, no need to set permissions
+#create text files, no need to set permissions, hope troop leaders arent stupid enough to delete important stuff like this
 touch /home/army/ArmyGeneral/attendance_record.txt
 touch /home/airforce/AirForceChief/attendance_record.txt
 touch /home/navy/NavyMarsall/attendance_record.txt
@@ -52,8 +51,7 @@ touch /home/army/ArmyGeneral/currweek.txt
 touch /home/airforce/AirForceChief/currweek.txt
 touch /home/navy/NavyMarsall/currweek.txt
 
-#fetch.sh only accesssible to troop leaders already true.
-#give permissions to access fetch
+#copying the fetch script to each of their home directories, might change this up after a few more tests
 cp /root/userad/fetch.sh /home/army/ArmyGeneral/fetch.sh
 cp /root/userad/fetch.sh /home/navy/NavyMarsall/fetch.sh
 cp /root/userad/fetch.sh /home/airforce/AirForceChief/fetch.sh

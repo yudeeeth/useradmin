@@ -14,4 +14,5 @@ setfacl -Rm u:ChiefCommander:rwx /home/navy
 setfacl -Rm u:ChiefCommander:rwx /home/army
 setfacl -Rm u:ChiefCommander:rwx /home/airforce
 cd /root/userad
+
 #setfacl seems a lot cleaner than having to assign groups to every single troop and linking them with troop leaders

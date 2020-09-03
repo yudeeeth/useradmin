@@ -1,6 +1,7 @@
 #!/bin/bash
 
 D=`date +"+%F"`
+#hardcoded date becoz current date doesnt exist in log files
 D="+2020-04-17"
 buff=(`grep ^$D /root/userad/attendance.log`)
 D=`date +%u`
