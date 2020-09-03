@@ -1,6 +1,17 @@
 #!/bin/bash
 
-echo "source /root/userad/aliases.sh" >> /bin/.bashrc
+chmod +x aliases.sh
+chmod +x assignpos.sh
+chmod +x createuser.sh
+chmod +x dailyattendance.sh
+chmod +x fetch.sh
+chmod +x nearest.sh
+chmod +x setattendance.sh
+chmod +x setpermisssions.sh
+chmod +x updateweek.sh
+
+
+
 
 i=1
 while [ $i -le 50 ]
@@ -14,22 +25,18 @@ do
   touch /home/airforce/$af/post_allotted.txt
 
   #change permissions
-  chmod 000 /home/army/$a/post_allotted.txt
-  chmod 000 /home/navy/$n/post_allotted.txt
-  chmod 000 /home/airforce/$af/post_allotted.txt
+  chmod 444 /home/army/$a/post_allotted.txt
+  chmod 444 /home/navy/$n/post_allotted.txt
+  chmod 444 /home/airforce/$af/post_allotted.txt
   i=$(( $i + 1 ))
 done
 
 #install commands in crontab
-touch /root/userad/something123
-crontab -l > /root/userad/something123
-echo "0 0 * * * bash /root/userad/assignpos.sh" >> /root/userad/something123
-echo "0 6 * * * bash /root/userad/setattendance.sh" >> /root/userad/something123 
-echo "0 0 0 * * bash /root/userad/updateweek.sh" >> /root/userad/something123
-echo "1 6 * * * bash /root/userad/dailyattendance.sh" >> /root/userad/something123 
-echo "1 6 * * * bash /root/userad/nearest.sh" >> /root/userad/something123 
-crontab /root/userad/something123
-rm /root/userad/something123
+echo "0 0 * * * root bash /root/userad/assignpos.sh" >> /etc/crontab
+echo "0 6 * * * root bash /root/userad/setattendance.sh" >> /etc/crontab 
+echo "0 0 0 * * root bash /root/userad/updateweek.sh" >> /etc/crontab
+echo "1 6 * * * root bash /root/userad/dailyattendance.sh" >> /etc/crontab
+echo "1 6 * * * root bash /root/userad/nearest.sh" >> /etc/crontab
 
 #create text files, no need to set permissions
 touch /home/army/ArmyGeneral/attendance_record.txt
@@ -47,9 +54,9 @@ touch /home/navy/NavyMarsall/currweek.txt
 
 #fetch.sh only accesssible to troop leaders already true.
 #give permissions to access fetch
-setfacl -m u:NavyMarsall:r-x /root/userad/fetch.sh
-setfacl -m u:ArmyGeneral:r-x /root/userad/fetch.sh
-setfacl -m u:AirForceChief:r-x /root/userad/fetch.sh
+cp /root/userad/fetch.sh /home/army/ArmyGeneral/fetch.sh
+cp /root/userad/fetch.sh /home/navy/NavyMarsall/fetch.sh
+cp /root/userad/fetch.sh /home/airforce/AirForceChief/fetch.sh
 
 #create attendance report
 touch /home/ChiefCommander/attendance_report.txt
