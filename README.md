@@ -1,5 +1,5 @@
 # useradmin
-Delta task 1 (remake)
+Delta task 1 (remake) along with subtask 2 from task 2
 ### Tl;dr
 ### Without Docker
 1. Please don't.
@@ -75,6 +75,16 @@ For example, if the troop chief types "record 4" the script will show the attend
 
 - [x] Create a file named nearest10 in the Chief Commander’s home directory.
 The file should have a table containing the usernames of 10 army soldiers who had their allotted posts nearest to Delhi from the total list of those who were present, as well as the dates when they were posted there. Develop a suitable algorithm for it.
+### Task 2 subtask 2 checklist
+- [x] Sub task 2
+
+- [x] Create a Dockerfile to handle all the scripts
+
+- [x] Using Ubuntu as the base image, copy all the scripts to the appropriate locations and run them accordingly
+
+- [x] Execute the alias.sh script inside the container
+
+- [x] The result of this should be that of the first task, and the only difference would be that everything, including the aliases and crontasks, are inside the container.
 
 ### Important Note
 My setpermi**sss**ions.sh has 3 s's in it
