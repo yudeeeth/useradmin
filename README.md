@@ -73,7 +73,7 @@ For example, if the troop chief types "record 4" the script will show the attend
 - [x] Create a file named attendance_report in the Chief Commander’s home directory with a table having each troop's attendance records along with the corresponding dates.
 (alias – nearest):
 
-Create a file named nearest10 in the Chief Commander’s home directory.
+- [x] Create a file named nearest10 in the Chief Commander’s home directory.
 The file should have a table containing the usernames of 10 army soldiers who had their allotted posts nearest to Delhi from the total list of those who were present, as well as the dates when they were posted there. Develop a suitable algorithm for it.
 
 
