@@ -76,6 +76,7 @@ For example, if the troop chief types "record 4" the script will show the attend
 - [x] Create a file named nearest10 in the Chief Commander’s home directory.
 The file should have a table containing the usernames of 10 army soldiers who had their allotted posts nearest to Delhi from the total list of those who were present, as well as the dates when they were posted there. Develop a suitable algorithm for it.
 
-
-
-
+### Important Note
+My setpermi**sss**ions.sh has 3 s's in it
+NavyMarshall is called as **NavyMarsall**
+I could change this, but I kind of like it this way
